@@ -1,0 +1,6 @@
+name,experience_years,education_level,num_matched,num_requested,num_listed,cover_letter_similarity,predicted_fit
+"Near-ideal, focused (Python job)",1.6,Master,3,3,3,0.88,0.9978
+"Perfect on paper, borderline cover letter (ML job)",1.5,Master,3,3,3,0.6,0.9016
+"Right experience, wrong education (Backend job)",1.4,Bachelor,3,3,4,0.79,0.8613
+"Junior, under-skilled but motivated (Embedded job)",0.4,Bachelor,1,3,1,0.91,0.5866
+"Senior, broad skills, generic letter (Python job)",8.0,PhD,3,3,9,0.35,0.378

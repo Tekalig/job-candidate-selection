@@ -54,5 +54,5 @@ def sample_new_candidates() -> pd.DataFrame:
 
 if __name__ == '__main__':
     new_df = sample_new_candidates()
-    ranked = rank_candidates('../models/fit_model.joblib', new_df)
+    ranked = rank_candidates('models/fit_model.joblib', new_df)
     print(ranked[['name', 'predicted_fit']].to_string(index=False))
