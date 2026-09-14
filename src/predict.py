@@ -5,12 +5,12 @@ Stage 4b — Score and rank new, unseen candidates using the trained model.
 import joblib
 import pandas as pd
 
-from features import build_features
+from features import build_features_from_raw, build_features
 
 
-def rank_candidates(model_path: str, new_candidates_df: pd.DataFrame) -> pd.DataFrame:
+def rank_candidates(model_path: str, new_candidates_df: pd.DataFrame, data_format: str) -> pd.DataFrame:
     model = joblib.load(model_path)
-    X_new = build_features(new_candidates_df)
+    X_new = build_features_from_raw(new_candidates_df) if data_format == 'raw' else build_features(new_candidates_df)
     new_candidates_df = new_candidates_df.copy()
     new_candidates_df['predicted_fit'] = model.predict(X_new).round(4)
     return new_candidates_df.sort_values('predicted_fit', ascending=False)

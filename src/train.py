@@ -13,13 +13,17 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 
-from features import build_features, FEATURE_COLUMNS
+from features import build_features, FEATURE_COLUMNS, build_features_from_raw
 
 
-def train_and_evaluate(csv_path: str, model_out_path: str):
+def train_and_evaluate(csv_path: str, model_out_path: str, data_format: str = 'synthetic'):
     df = pd.read_csv(csv_path)
 
-    X = build_features(df)
+    if data_format == 'raw':
+        X = build_features_from_raw(df)
+    else:
+        X = build_features(df)
+
     y = df['fit_label']
 
     X_train, X_test, y_train, y_test = train_test_split(

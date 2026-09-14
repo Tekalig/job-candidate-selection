@@ -8,6 +8,7 @@ measures do: match ratio, listed count, focus ratio, distances.
 """
 
 import pandas as pd
+from data_process import extract_row_features
 
 EDU_LEVELS = {'Bachelor': 1, 'Master': 2, 'PhD': 3}
 TARGET_EXPERIENCE = 1.5
@@ -38,3 +39,7 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     feats['cover_letter_similarity'] = df['cover_letter_similarity']
 
     return feats[FEATURE_COLUMNS]
+
+def build_features_from_raw(df: pd.DataFrame)-> pd.DataFrame:
+    raw_feats = df.apply(extract_row_features, axis=1, result_type='expand')
+    return raw_feats[FEATURE_COLUMNS]
